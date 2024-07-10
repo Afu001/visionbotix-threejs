@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Three.js with Navbar and Sections</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden; /* Prevent scrollbars */
+      font-family: Arial, sans-serif;
+    }
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Adjust background color and opacity */
+      z-index: 1; /* Ensure navbar is on top */
+    }
+    #navbar a {
+      color: white;
+      padding: 15px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    #navbar a:hover {
+      background-color: rgba(255, 255, 255, 0.3); /* Adjust hover background color */
+    }
+    .section {
+      position: relative; /* Ensure sections are positioned correctly */
+      width: 100%;
+      height: 100vh; /* Adjust height as needed */
+      background-color: rgba(255, 255, 255, 0.05); /* Adjust section background color and opacity */
+      z-index: 1; /* Ensure sections are on top */
+      text-align: center;
+      padding: 80px 20px;
+      box-sizing: border-box;
+      color: black; /* Set default font color */
+    }
+    .section h2 {
+      color: rgb(217, 255, 0); /* Change font color of the section title */
+      font-size: 10.5rem; /* Adjust font size */
+      font-weight: 900; /* Adjust font weight */
+      opacity: 0.6; /* Set opacity for a slightly opaque effect */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Specify your preferred font */
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0; /* Ensure Three.js canvas is behind everything */
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar">
+    <a href="#section1">Visionbotix</a>
+    <a href="#section2">About Us</a>
+    <a href="#section3">Services</a>
+  </div>
+
+  <div id="section1" class="section">
+    <h2>VisionBotix</h2>
+    <p></p>
+  </div>
+
+  <div id="section2" class="section">
+    <h2>Section 2</h2>
+    <p>Content for section 2...</p>
+  </div>
+
+  <div id="section3" class="section">
+    <h2>Section 3</h2>
+    <p>Content for section 3...</p>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script> <!-- Include GSAP library for smooth scrolling -->
+  <script src="script.js"></script>
+  <script>
+    // Smooth scrolling for navbar links
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+  
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            gsap.to(window, { duration: 1, scrollTo: { y: target.offsetTop }, ease: "power2.inOut" }); // GSAP smooth scroll animation
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
